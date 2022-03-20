@@ -2,6 +2,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,7 +22,7 @@ public class Main {
                     String riik = row.select("td:nth-of-type(1)").text();
                     String valuuta = row.select("td:nth-of-type(2)").text();
                     kood = row.select("td:nth-of-type(3)").text();
-                    System.out.println(riik + " " + valuuta + " " + kood);
+                    System.out.println("Valisite riigi: " + riik + " " + valuuta + " " + kood);
                     break;
                 }
             }
@@ -28,11 +30,13 @@ public class Main {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-        kood = "PLN";
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Sisesta kood:");
+        String koodA = scan.nextLine();
+        kood = koodA;
         StringBuilder urlC = new StringBuilder(url2);
         int i = urlC.indexOf("=", "https://www.xe.com/currencyconverter/convert/?Amount=1&From".length());
         urlC.replace(i, i + 1, "=" + kood);
-        System.out.println(urlC);
         try {
             final Document document = Jsoup.connect(urlC.toString()).get();
 
@@ -42,7 +46,7 @@ public class Main {
                 }
                 else {
                     String väärtus = row.select("p").text();
-                    System.out.println(väärtus);
+                    System.out.println("Võrdlus euroga: " + väärtus);
                     break;
                 }
             }
