@@ -29,6 +29,7 @@ public class Main {
             ex.printStackTrace();
         }
 
+        kood = "RUB";
         StringBuilder urlC = new StringBuilder(url2);
         int i = urlC.indexOf("=", "https://www.xe.com/currencyconverter/convert/?Amount=1&From".length());
         urlC.replace(i, i + 1, "=" + kood);
