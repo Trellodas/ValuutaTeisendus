@@ -28,7 +28,7 @@ public class Main {
         catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        kood = "PLN";
         StringBuilder urlC = new StringBuilder(url2);
         int i = urlC.indexOf("=", "https://www.xe.com/currencyconverter/convert/?Amount=1&From".length());
         urlC.replace(i, i + 1, "=" + kood);
